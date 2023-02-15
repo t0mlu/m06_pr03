@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Apartment;
+use App\Models\Platform;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +20,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        DB::table('apartment_platform')->insert(
+            [
+                'apartment_id' => Apartment::all()->random()->id,
+                'platform_id' => Apartment::all()->random()->id,
+            ]
+        );
     }
 }
