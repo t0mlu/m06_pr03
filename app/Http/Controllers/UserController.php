@@ -26,13 +26,14 @@ class UserController extends Controller
         return response()->noContent();
     }
 
+
     public function signin(Request $request)
     {
-        if (Auth::attempt($credentials)) {
-            $token = $request->user()->createToken();
+        if (Auth::attempt($request->all())) {
+            $token = $request->user()->createToken('API Bearer Token');
             return response()->json(['token' => $token->plainTextToken], 200);
         } else {
-            return response()->json(['error' => 'The provided credentials do not match our records.'], 403);
+            return response()->json(['error' => 'The provided credentials do not match our records.'], 422);
         }
     }
 }

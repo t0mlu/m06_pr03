@@ -16,6 +16,13 @@ class CheckSigninFields
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        $validator = validator::make($request->all(), [
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:5']
+        ]);
+
+        return $validator->fails() ?
+            response()->json(['errors' => $validator->errors()], 422)
+            : $next($request);
     }
 }
