@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('platform_id');
 
             $table->foreign('apartment_id')->references('id')->on('apartments');
-            $table->foreign('platform_id')->references('id')->on('platform');
+            $table->foreign('platform_id')->references('id')->on('platforms');
         });
     }
 
