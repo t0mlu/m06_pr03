@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Apartment>
@@ -17,7 +18,12 @@ class ApartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'address' => fake()->address(),
+            'city' => fake()->city(),
+            'postal_code' => fake()->randomNumber(5, true),
+            'rented_price' => fake()->numberBetween(350, 10000),
+            'rented' => fake()->boolean(),
+            'user_id' => User::all()->random()->id
         ];
     }
 }

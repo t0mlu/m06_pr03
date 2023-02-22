@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('address');
+            $table->string('city');
+            $table->string('postal_code', 5);
+            $table->decimal('rented_price');
+            $table->boolean('rented');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
