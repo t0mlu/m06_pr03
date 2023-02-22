@@ -10,18 +10,17 @@ use Illuminate\Http\Response;
 
 class ApartmentController extends Controller
 {
+    public function __construct()
+    {
+        // TODO: Add middleware here
+
+        // $this->middleware('store')->only('signup');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): Response
     {
         //
     }
@@ -38,14 +37,6 @@ class ApartmentController extends Controller
      * Display the specified resource.
      */
     public function show(Apartment $apartment): Response
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Apartment $apartment): Response
     {
         //
     }

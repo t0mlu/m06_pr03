@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\PlatformController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('apartments', ApartmentController::class);
+    Route::apiResource('platforms', PlatformController::class);
 });
 
-Route::post('/signup', [UserController::class, 'signup']);
-Route::post('/signin', [UserController::class, 'signin']);
+Route::post('signup', [UserController::class, 'signup']);
+Route::post('signin', [UserController::class, 'signin']);
