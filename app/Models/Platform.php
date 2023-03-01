@@ -15,4 +15,9 @@ class Platform extends Model
         'name',
         'owner'
     ];
+
+    public function apartments()
+    {
+        return $this->belongsToMany(Apartment::class);
+    }
 }

@@ -11,11 +11,11 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('signup')->only('signup');
-        $this->middleware('signin')->only('signin');
+        $this->middleware('register')->only('register');
+        $this->middleware('login')->only('login');
     }
 
-    public function signup(Request $request)
+    public function register(Request $request)
     {
         $user = User::create([
             'name' => $request['name'],
@@ -27,7 +27,7 @@ class UserController extends Controller
     }
 
 
-    public function signin(Request $request)
+    public function login(Request $request)
     {
         if (Auth::attempt($request->all())) {
             $token = $request->user()->createToken('API Bearer Token');

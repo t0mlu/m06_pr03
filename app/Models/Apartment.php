@@ -19,4 +19,14 @@ class Apartment extends Model
         'rented',
         'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function platforms()
+    {
+        return $this->belongsToMany(Platform::class);
+    }
 }

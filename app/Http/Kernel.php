@@ -63,7 +63,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'signup' => \App\Http\Middleware\CheckSignupFields::class,
-        'signin' => \App\Http\Middleware\CheckSigninFields::class,
+        'register' => \App\Http\Middleware\CheckSignupFields::class,
+        'login' => \App\Http\Middleware\CheckSigninFields::class,
+        'apartmentRequired' => \App\Http\Middleware\CheckRequiredApartmentFields::class,
+        'apartmentValidate' => \App\Http\Middleware\ValidateApartmentFields::class,
     ];
 }

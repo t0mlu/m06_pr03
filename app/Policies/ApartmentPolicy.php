@@ -37,7 +37,7 @@ class ApartmentPolicy
      */
     public function update(User $user, Apartment $apartment): bool
     {
-        //
+        return $user->id === $apartment->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ApartmentPolicy
      */
     public function delete(User $user, Apartment $apartment): bool
     {
-        //
+        return $user->id === $apartment->user_id;
     }
 
     /**
