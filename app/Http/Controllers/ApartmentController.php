@@ -24,7 +24,10 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        return response()->json(['apartments' => Apartment::with(['user', 'platforms'])->get()]);
+        if ($request->filled('city')) {
+            return Apartment::where('city', '=', $request->city)->with(['user', 'platforms'])->get();
+        }
+        return Apartment::with(['user', 'platforms'])->get();
     }
 
     /**
