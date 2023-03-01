@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('postal_code', 5);
-            $table->decimal('rented_price');
+            $table->decimal('rented_price')->nullable();
             $table->boolean('rented');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
