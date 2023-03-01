@@ -24,7 +24,7 @@ class CheckSignupFields
         ]);
 
         return $validator->fails() ?
-            response()->json(['errors' => $validator->errors()])
+            response()->json(['errors' => $validator->errors()], 422)
             : $next($request);
     }
 }
