@@ -18,12 +18,10 @@ use App\Http\Controllers\PlatformController;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    /*Route::apiResource('apartments', ApartmentController::class);
-    Route::apiResource('platforms', PlatformController::class);*/
-    Route::apiResources([
-        'apartments' => ApartmentController::class,
-        'platforms' => PlatformController::class
-    ]);
+    Route::apiResource('apartments', ApartmentController::class);
+    Route::get('platform/{id}', [ApartmentController::class, 'apartmentsInPlatform']);
+    Route::get('apartments_rented', [ApartmentController::class, 'rentedApartments']);
+    Route::get('apartments_premium', [ApartmentController::class, 'apartmentsPremium']);
 });
 
 Route::post('register', [UserController::class, 'register']);

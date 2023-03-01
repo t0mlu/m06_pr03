@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Platform;
 
 class ApartmentController extends Controller
 {
@@ -73,5 +75,36 @@ class ApartmentController extends Controller
 
         $apartment->delete();
         return response()->noContent();
+    }
+
+
+    // Non CRUD functions
+
+    public function apartmentsInPlatform($id)
+    {
+        return Apartment::whereRelation('platforms', 'platform_id', '=', $id)
+            ->orderBy('id')
+            ->with('user')
+            ->get();
+    }
+
+    public function rentedApartments(Request $request)
+    {
+        $this->validate($request, [
+            'rented' => ['required', 'boolean']
+        ]);
+
+        return Apartment::where('rented', $request->rented)
+            ->orderBy('id')
+            ->with('user')
+            ->get();
+    }
+
+    public function apartmentsPremium()
+    {
+        return Apartment::where('rented_price', '>', 1000)
+            ->orderBy('id')
+            ->with('user')
+            ->get();
     }
 }
