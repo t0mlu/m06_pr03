@@ -22,7 +22,7 @@ class ApartmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($request->filled('city')) {
             return Apartment::where('city', '=', $request->city)->with(['user', 'platforms'])->get();
